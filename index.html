@@ -1,0 +1,356 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Luma — The AI-powered creative tool</title>
+  <meta name="description" content="Confident but not loud. Technical but beautiful. A tool built by designers for designers." />
+
+  <link rel="preconnect" href="https://rsms.me/" />
+  <link rel="stylesheet" href="https://rsms.me/inter/inter.css" />
+
+  <style>
+    :root {
+      /* Light surfaces (DESIGN.md light-mode neutrals) */
+      --bg: #ffffff;
+      --surface-soft: #f7f8f8;          /* Light Background */
+      --surface-tint: #f3f4f5;          /* Light Surface */
+      --border-soft: #ececec;
+      --border-light: #e6e6e6;          /* Light Border Alt */
+
+      /* Text — Marketing Black on light */
+      --text-primary: #08090a;          /* Marketing Black */
+      --text-muted: #8a8f98;            /* Tertiary Text */
+      --text-quiet: #62666d;            /* Quaternary Text */
+
+      /* Buttons (per DESIGN.overrides.md — dark pill, light text) */
+      --btn-default: #08090a;           /* Marketing Black */
+      --btn-hover:   #28282c;           /* Secondary Surface */
+      --btn-pressed: #23252a;           /* Border Primary */
+      --btn-text:    #f7f8f8;           /* Primary Text */
+    }
+
+    * { box-sizing: border-box; }
+
+    html, body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text-primary);
+      font-family: "Inter var", "Inter", -apple-system, BlinkMacSystemFont, "SF Pro Display", system-ui, sans-serif;
+      font-feature-settings: "cv01", "ss03";
+      font-variation-settings: "opsz" 14;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    a { color: inherit; text-decoration: none; }
+
+    /* ── Layout ─────────────────────────────────────────── */
+    .container {
+      width: 100%;
+      max-width: 1240px;
+      margin: 0 auto;
+      padding: 0 32px;
+    }
+
+    /* ── Header ─────────────────────────────────────────── */
+    .site-header {
+      border-bottom: 1px solid var(--border-soft);
+      background: var(--bg);
+    }
+    .site-header .inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 72px;
+    }
+    .logo,
+    .partner-logo {
+      display: inline-flex;
+      align-items: center;
+    }
+    .logo img { height: 28px; width: auto; display: block; }
+    .partner-logo img { height: 24px; width: auto; display: block; }
+
+    /* ── Buttons (DESIGN.overrides.md) ───────────────────── */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      font-family: inherit;
+      font-feature-settings: "cv01", "ss03";
+      font-size: 15px;
+      font-weight: 510;
+      line-height: 1;
+      letter-spacing: -0.01em;
+      padding: 12px 22px;
+      border: 1px solid var(--btn-default);
+      border-radius: 999px;
+      background: var(--btn-default);
+      color: var(--btn-text);
+      cursor: pointer;
+      transition: background 140ms ease, border-color 140ms ease;
+      white-space: nowrap;
+    }
+    .btn:hover  { background: var(--btn-hover);   border-color: var(--btn-hover); }
+    .btn:active { background: var(--btn-pressed); border-color: var(--btn-pressed); }
+    .btn:focus-visible { outline: 2px solid var(--btn-default); outline-offset: 3px; }
+    .btn-lg { font-size: 16px; padding: 14px 28px; }
+
+    /* ── Hero ───────────────────────────────────────────── */
+    .hero { padding: 96px 0 56px; text-align: center; }
+    .hero h1 {
+      margin: 0 auto;
+      max-width: 22ch;
+      font-size: 48px;
+      font-weight: 510;
+      line-height: 1.08;
+      letter-spacing: -0.025em;
+    }
+    .hero h2 {
+      margin: 24px auto 0;
+      max-width: 56ch;
+      font-size: 20px;
+      font-weight: 510;
+      line-height: 1.4;
+      letter-spacing: -0.012em;
+      color: var(--text-primary);
+    }
+    .hero .cta { margin-top: 36px; }
+
+    /* ── Hero video ─────────────────────────────────────── */
+    .hero-media { padding: 24px 0 96px; }
+    .video-frame {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      border-radius: 24px;
+      overflow: hidden;
+      background: var(--surface-soft);
+      border: 1px solid var(--border-light);
+    }
+    .video-frame video {
+      width: 100%; height: 100%;
+      object-fit: cover; display: block;
+    }
+    .video-fallback {
+      position: absolute; inset: 0;
+      display: flex; align-items: center; justify-content: center;
+      color: var(--text-quiet); font-size: 14px; letter-spacing: 0.02em;
+    }
+
+    /* ── Feature row (two columns) ──────────────────────── */
+    .feature { padding: 64px 0 120px; }
+    .feature .grid {
+      display: grid;
+      grid-template-columns: 1.1fr 1fr;
+      gap: 64px;
+      align-items: center;
+    }
+    .feature h2 {
+      margin: 0 0 20px;
+      font-size: clamp(36px, 4.4vw, 56px);
+      font-weight: 510;
+      line-height: 1.05;
+      letter-spacing: -0.022em;
+      max-width: 14ch;
+    }
+    .feature p {
+      margin: 0;
+      max-width: 52ch;
+      font-size: 17px;
+      line-height: 1.6;
+      letter-spacing: -0.005em;
+      color: var(--text-quiet);
+    }
+    .feature .right { display: flex; justify-content: flex-end; }
+
+    /* ── Footer ─────────────────────────────────────────── */
+    .site-footer {
+      border-top: 1px solid var(--border-soft);
+      padding: 80px 0 64px;
+    }
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 1.4fr 1fr 1fr;
+      gap: 64px;
+      align-items: start;
+    }
+    .brand-block .brand-mark {
+      font-size: clamp(40px, 5vw, 56px);
+      font-weight: 590;
+      letter-spacing: -0.03em;
+      line-height: 1;
+      color: var(--text-primary);
+      margin: 0 0 28px;
+    }
+    .socials {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+    .socials a {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      transition: opacity 140ms ease, transform 140ms ease;
+    }
+    .socials a:hover { opacity: 0.7; }
+    .socials img {
+      width: 44px;
+      height: 44px;
+      display: block;
+    }
+    .footer-links {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      font-size: 15px;
+      line-height: 1.4;
+      color: var(--text-primary);
+    }
+    .footer-links a { transition: opacity 140ms ease; }
+    .footer-links a:hover { opacity: 0.6; }
+
+    /* ── Responsive ─────────────────────────────────────── */
+    @media (max-width: 800px) {
+      .container { padding: 0 20px; }
+      .hero { padding: 56px 0 32px; }
+      .hero-media { padding: 16px 0 64px; }
+      .feature { padding: 32px 0 80px; }
+      .feature .grid { grid-template-columns: 1fr; gap: 32px; }
+      .feature .right { justify-content: flex-start; }
+      .site-footer { padding: 56px 0 48px; }
+      .footer-grid { grid-template-columns: 1fr 1fr; gap: 40px; }
+      .brand-block { grid-column: 1 / -1; margin-bottom: 8px; }
+    }
+    @media (max-width: 520px) {
+      .footer-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+
+<body>
+
+  <header class="site-header">
+    <div class="container inner">
+      <a class="logo" href="https://app.lumalabs.ai" aria-label="Forma home">
+        <img src="img/forma-logo.png" alt="Forma" />
+      </a>
+      <a class="btn" href="https://app.lumalabs.ai">Sign In</a>
+    </div>
+  </header>
+
+  <main>
+
+    <section class="hero">
+      <div class="container">
+        <h1>The AI-powered creative tool for people who care about the details.</h1>
+        <h2>Confident but not loud. Technical but beautiful.<br />A tool built by designers for designers.</h2>
+        <div class="cta">
+          <a class="btn btn-lg" href="https://app.lumalabs.ai">Try it today</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="hero-media">
+      <div class="container">
+        <div class="video-frame">
+          <video
+            src="img/hero-video-lowres.mp4"
+            autoplay
+            muted
+            loop
+            playsinline
+            preload="metadata"
+            aria-label="Luma product video">
+          </video>
+          <div class="video-fallback" aria-hidden="true">video loading…</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="feature">
+      <div class="container">
+        <div class="grid">
+          <div class="left">
+            <h2>Limitless possibilities</h2>
+            <p>Users can place, layer, and arrange elements on a shared canvas, adjust tea and depth per element, and iteratively refine individual parts without losing the overall composition.</p>
+          </div>
+          <div class="right">
+            <a class="btn btn-lg" href="https://app.lumalabs.ai">Explore more use cases</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+
+        <div class="brand-block">
+          <div class="brand-mark">Luma</div>
+          <div class="socials">
+            <a href="https://www.instagram.com/lumalabsai" aria-label="Instagram" target="_blank" rel="noopener">
+              <img src="img/ig-logo.png" alt="" />
+            </a>
+            <a href="https://www.youtube.com/@lumalabsai" aria-label="YouTube" target="_blank" rel="noopener">
+              <img src="img/yt-logo.png" alt="" />
+            </a>
+            <a href="https://x.com/LumaLabsAI" aria-label="X" target="_blank" rel="noopener">
+              <img src="img/x-logo.png" alt="" />
+            </a>
+            <a href="https://www.tiktok.com/@lumalabsai" aria-label="TikTok" target="_blank" rel="noopener">
+              <img src="img/tiktok-logo.png" alt="" />
+            </a>
+            <a href="https://www.linkedin.com/company/luma-ai/" aria-label="LinkedIn" target="_blank" rel="noopener">
+              <img src="img/linkedin-logo.png" alt="" />
+            </a>
+          </div>
+        </div>
+
+        <ul class="footer-links">
+          <li><a href="#">Product</a></li>
+          <li><a href="#">Pricing</a></li>
+          <li><a href="#">Use Cases</a></li>
+          <li><a href="#">UNI-1</a></li>
+          <li><a href="#">API</a></li>
+          <li><a href="#">Enterprise</a></li>
+          <li><a href="#">Join Us</a></li>
+          <li><a href="#">Creative Partner Program</a></li>
+        </ul>
+
+        <ul class="footer-links">
+          <li><a href="#">Education Program</a></li>
+          <li><a href="#">Learning Center</a></li>
+          <li><a href="#">Media kit</a></li>
+          <li><a href="#">Terms of Service</a></li>
+          <li><a href="#">Privacy Policy</a></li>
+          <li><a href="#">Cookie Policy</a></li>
+          <li><a href="#">Subprocessors</a></li>
+        </ul>
+
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const v = document.querySelector('.video-frame video');
+    const fb = document.querySelector('.video-fallback');
+    if (v && fb) {
+      const hide = () => fb.style.display = 'none';
+      v.addEventListener('playing', hide);
+      v.addEventListener('loadeddata', hide);
+    }
+  </script>
+</body>
+</html>
