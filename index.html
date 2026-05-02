@@ -101,7 +101,7 @@
     /* ── Hero ───────────────────────────────────────────── */
     .hero { padding: 96px 0 56px; text-align: center; }
     .hero h1 {
-      margin: 0 auto;
+      margin: 40px auto 0;
       max-width: 32ch;
       font-size: 48px;
       font-weight: 510;
@@ -109,7 +109,7 @@
       letter-spacing: -0.025em;
     }
     .hero h2 {
-      margin: 24px auto 0;
+      margin: 0 auto;
       max-width: 56ch;
       font-size: 20px;
       font-weight: 510;
@@ -118,6 +118,22 @@
       color: var(--text-primary);
     }
     .hero .cta { margin-top: 36px; }
+
+    /* ── Tagline section (below video) ───────────────────── */
+    .tagline-section {
+      padding: 32px 0 96px;
+      text-align: center;
+      border-bottom: 1px solid var(--border-soft);
+    }
+    .tagline-section h2 {
+      margin: 0 auto;
+      max-width: 56ch;
+      font-size: 20px;
+      font-weight: 700;
+      line-height: 1.4;
+      letter-spacing: -0.012em;
+      color: var(--text-primary);
+    }
 
     /* ── Hero video ─────────────────────────────────────── */
     .hero-media { padding: 24px 0 96px; }
@@ -141,7 +157,10 @@
     }
 
     /* ── Feature row (two columns) ──────────────────────── */
-    .feature { padding: 64px 0 120px; }
+    .feature {
+      padding: 96px 0;
+      border-bottom: 1px solid var(--border-soft);
+    }
     .feature .grid {
       display: grid;
       grid-template-columns: 1.1fr 1fr;
@@ -154,7 +173,7 @@
       font-weight: 510;
       line-height: 1.05;
       letter-spacing: -0.022em;
-      max-width: 14ch;
+      max-width: 24ch;
     }
     .feature p {
       margin: 0;
@@ -168,7 +187,6 @@
 
     /* ── Footer ─────────────────────────────────────────── */
     .site-footer {
-      border-top: 1px solid var(--border-soft);
       padding: 80px 0 64px;
     }
     .footer-grid {
@@ -183,7 +201,15 @@
       letter-spacing: -0.03em;
       line-height: 1;
       color: var(--text-primary);
+      margin: 0 0 20px;
+    }
+    .brand-tagline {
       margin: 0 0 28px;
+      max-width: 52ch;
+      font-size: 17px;
+      line-height: 1.6;
+      letter-spacing: -0.005em;
+      color: var(--text-quiet);
     }
     .socials {
       display: flex;
@@ -252,10 +278,9 @@
 
     <section class="hero">
       <div class="container">
-        <h1>The AI-powered creative tool for<br />people who care about the details.</h1>
-        <h2>Confident but not loud. Technical but beautiful.<br />A tool built by designers for designers.</h2>
+        <h1>Introducing Scenes.<br />From elements to perfect composition.</h1>
         <div class="cta">
-          <a class="btn btn-lg" href="https://app.lumalabs.ai">Try it today</a>
+          <a class="btn btn-lg" href="https://app.lumalabs.ai">Join the Waitlist</a>
         </div>
       </div>
     </section>
@@ -277,15 +302,21 @@
       </div>
     </section>
 
+    <section class="tagline-section">
+      <div class="container">
+        <h2>Confident but not loud. Technical but beautiful.<br />A tool built by designers for designers.</h2>
+      </div>
+    </section>
+
     <section class="feature">
       <div class="container">
         <div class="grid">
           <div class="left">
-            <h2>Limitless possibilities</h2>
+            <h2>Limitless<br />Scenes</h2>
             <p>Users can place, layer, and arrange elements on a shared canvas, adjust tea and depth per element, and iteratively refine individual parts without losing the overall composition.</p>
           </div>
           <div class="right">
-            <a class="btn btn-lg" href="https://app.lumalabs.ai">Explore more use cases</a>
+            <a class="btn btn-lg" href="https://app.lumalabs.ai">Explore Scenes</a>
           </div>
         </div>
       </div>
@@ -298,7 +329,8 @@
       <div class="footer-grid">
 
         <div class="brand-block">
-          <div class="brand-mark">Luma</div>
+          <div class="brand-mark">Forma</div>
+          <p class="brand-tagline">The AI-powered creative tool for<br />people who care about the details.</p>
           <div class="socials">
             <a href="https://www.instagram.com/lumalabsai" aria-label="Instagram" target="_blank" rel="noopener">
               <img src="img/ig-logo.png" alt="" />
